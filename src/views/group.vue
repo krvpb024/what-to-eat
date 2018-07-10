@@ -1,6 +1,11 @@
 <template>
   <section class="home-section">
-    <section-header>{{title}}</section-header>
+    <section-header>
+      <router-link ></router-link>
+      <p slot="left">返回</p>
+      {{title}}
+      <p slot="right">dd</p>
+    </section-header>
     <section-content>
       <ul>
         <li
@@ -13,7 +18,7 @@
       </ul>
     </section-content>
     <action-btn>
-      <img src="../assets/add-btn.svg" alt="新增">
+      <img src="../assets/image/add-btn.svg" alt="新增">
     </action-btn>
     <transition
       enter-active-class="animated slideInUp"

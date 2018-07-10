@@ -8,8 +8,8 @@
 .home-section-listgoup {
   background-color: #fff;
   box-sizing: border-box;
-  height: calc(100% - 15vh);
-  margin-top: 15vh;
+  min-height: calc(100% - 13vh);
+  margin-top: 12vh;
   padding: 0 10%;
   padding-top: 5%;
 }

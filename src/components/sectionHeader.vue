@@ -1,23 +1,52 @@
 <template>
   <header class="home-section-title">
-    <h1><slot></slot></h1>
+    <div class="header-nav">
+      <div class="header-nav-btn left">
+        <slot name="left"></slot>
+      </div>
+      <h1><slot></slot></h1>
+      <div class="header-nav-btn right">
+        <slot name="right"></slot>
+      </div>
+    </div>
   </header>
 </template>
 
 <style>
 .home-section-title{
+  align-items: flex-end;
   background-color: #b8dbd9;
   display: flex;
-  flex-direction: column;
-  height: 15vh;
-  justify-content: flex-end;
+  height: 12vh;
   position: fixed;
   width: 100%;
-  text-align: center;
   top: 0;
+}
+
+.header-nav {
+  align-items: center;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 3%;
   & h1 {
     color: #586f7c;
     font-weight: normal;
+    margin: 0;
+  }
+}
+
+.header-nav-btn {
+  color: #586f7c;
+  font-size: 1rem;
+  line-height: 1rem;
+  width: 30px;
+  white-space: nowrap;
+  &.left {
+    margin-left: 4%;
+  }
+  &.right {
+    margin-right: 4%;
   }
 }
 </style>

@@ -1,16 +1,25 @@
 <template>
   <section class="groupadd-section">
-    <section-header>{{title}}</section-header>
+    <section-header>
+      {{title}}
+      <template slot="right">
+        <router-link to="/group">
+          <img src="../assets/image/add-close.svg" alt="關閉">
+        </router-link>
+      </template>
+    </section-header>
     <section-content>
-      <h2 class="groupadd-section-h2">群組是為了區隔不同地方的選項</h2>
+      <h2 class="groupadd-section-h2">群組是為了區隔不同地點的選項</h2>
       <form action="get" class="groupadd-section-form">
-        <label for="title" class="groupadd-section-label">群組名稱</label>
-        <input type="text" id="title" name="title" placeholder="例如：學校、公司、家附近" class="groupadd-section-input" autocomplete="off">
+        <label for="place" class="groupadd-section-label">地點</label>
+        <input type="text" id="place" name="place" placeholder="例如：學校、公司、家附近" class="groupadd-section-input" autocomplete="off">
+        <label for="type" class="groupadd-section-label">類型</label>
+        <input type="text" id="type" name="type" placeholder="例如：午晚餐、飲料" class="groupadd-section-input" autocomplete="off">
       </form>
+      <action-btn>
+        <img src="../assets/image/add-check.svg" alt="新增">
+      </action-btn>
     </section-content>
-    <action-btn>
-      <img src="../assets/add-check.svg" alt="新增">
-    </action-btn>
   </section>
 </template>
 
@@ -58,6 +67,7 @@ export default {
 .groupadd-section-input {
   border: 0;
   border-bottom: 1px solid black;
+  border-radius: 0;
   display: inline-block;
   margin-bottom: 3%;
   padding: 10px;
