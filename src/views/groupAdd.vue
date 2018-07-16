@@ -1,5 +1,6 @@
 <template>
   <section class="groupadd-section">
+    <scroll-lock class="lock-body-scroll">
     <section-header>
       {{title}}
       <template slot="right">
@@ -9,17 +10,18 @@
       </template>
     </section-header>
     <section-content>
-      <h2 class="groupadd-section-h2">群組是為了區隔不同地點的選項</h2>
       <form action="get" class="groupadd-section-form">
-        <label for="place" class="groupadd-section-label">地點</label>
-        <input type="text" id="place" name="place" placeholder="例如：學校、公司、家附近" class="groupadd-section-input" autocomplete="off">
-        <label for="type" class="groupadd-section-label">類型</label>
-        <input type="text" id="type" name="type" placeholder="例如：午晚餐、飲料" class="groupadd-section-input" autocomplete="off">
+        <fieldset class="groupadd-section-form-fieldset">
+          <legend class="groupadd-section-legend">群組是為了區隔不同地點的選項</legend>
+          <label for="place" class="groupadd-section-label">地點</label>
+          <input type="text" id="place" name="place" placeholder="例如：學校、公司、家附近" class="groupadd-section-input">
+        </fieldset>
       </form>
       <action-btn>
         <img src="../assets/image/add-check.svg" alt="新增">
       </action-btn>
     </section-content>
+    </scroll-lock>
   </section>
 </template>
 
@@ -27,6 +29,7 @@
 import sectionHeader from '@/components/sectionHeader.vue'
 import sectionContent from '@/components/sectionContent.vue'
 import actionBtn from '@/components/actionBtn.vue'
+import 'datalist-polyfill'
 
 export default {
   name: 'groupAdd',
@@ -43,20 +46,30 @@ export default {
 
 <style>
 .groupadd-section {
-  height: 100vh;
-  position: absolute;
+  animation-duration: 0.3s;
+  background-color: #fff;
+  height: 120vh;
+  position: fixed;
   text-align: center;
   top: 0;
   width: 100vw;
-  animation-duration: 0.3s;
+  z-index: 110;
 }
-.groupadd-section-h2 {
+.lock-body-scroll {
+  height: 100%;
+  width: 100%;
+}
+.groupadd-section-legend {
   color: #04724d;
   font-size: 1.2rem;
   font-weight: normal;
+  margin-bottom: 2%;
 }
 .groupadd-section-form {
   text-align: center;
+}
+.groupadd-section-form-fieldset {
+  border: 0;
 }
 .groupadd-section-label {
   display: inline-block;
@@ -65,6 +78,7 @@ export default {
   width: 100%;
 }
 .groupadd-section-input {
+  box-sizing: border-box;
   border: 0;
   border-bottom: 1px solid black;
   border-radius: 0;

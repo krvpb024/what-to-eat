@@ -21,6 +21,7 @@
   position: fixed;
   width: 100%;
   top: 0;
+  z-index: 100;
 }
 
 .header-nav {
@@ -39,6 +40,7 @@
 .header-nav-btn {
   color: #586f7c;
   font-size: 1rem;
+  height: 45px;
   line-height: 1rem;
   width: 30px;
   white-space: nowrap;
@@ -47,6 +49,14 @@
   }
   &.right {
     margin-right: 4%;
+  }
+  & a {
+    height: 100%;
+    width: 100%;
+    & img {
+      height: 100%;
+      width: 100%;
+    }
   }
 }
 </style>

@@ -1,14 +1,17 @@
 <template>
-  <li v-if="placeArray.length > 0" class="listgoup-item">
+  <li v-if="choices.length > 0" class="listgoup-item">
     <h2 class="listgoup-item-h2">{{title}}</h2>
     <ul class="listgoup-item-ngroup">
-      <draggable v-model="places" :options="{handle:'.listgoup-item-ngroup-item-controlbtn'}">
+      <draggable v-model="choices" :options="{handle:'.listgoup-item-ngroup-item-controlbtn'}">
         <li
-          is="group-item-unit"
-          v-for="place in places"
-          :key="place.pk"
+          is="place-item-unit"
+          v-for="choice in choices"
+          :key="choice.pk"
           :showSettingBtn="showSettingBtn"
-          :placeTitle="place.title"
+          :pk="choice.pk"
+          :placeTitle="choice.title"
+          :checked="choice.checked"
+          @checkItem="checkItem"
         ></li>
       </draggable>
       <transition
@@ -18,14 +21,14 @@
         v-on:leave="leave"
       >
         <li is="group-item-unit-add"
-          :key="`${currentGroup}-addform`"
+          :key="`${currentPlace}-addform`"
           v-if="showAddForm"
           :showAddForm="showAddForm"
           :canFoucusAddForm="canFoucusAddForm"
         ></li>
       </transition>
       <li is="setting-btn"
-        :currentGroup="currentGroup"
+        :currentGroup="currentPlace"
         :showAddForm="showAddForm"
         :showSettingBtn="showSettingBtn"
         @showAddFormEvent="showAddForm = !showAddForm"
@@ -36,7 +39,7 @@
 </template>
 
 <script>
-import groupItemUnit from '@/components/group/groupItemUnit.vue'
+import placeItemUnit from '@/components/place/placeItemUnit.vue'
 import groupItemUnitAdd from '@/components/group/groupItemUnitAdd.vue'
 import settingBtn from '@/components/group/settingBtn.vue'
 import draggable from 'vuedraggable'
@@ -48,25 +51,20 @@ export default {
   },
   data: function () {
     return {
-      currentGroup: this.pk,
-      placeArray: [
-        { pk: 1, group: 1, title: '午晚餐' },
-        { pk: 2, group: 1, title: '飲料' },
-        { pk: 3, group: 2, title: '午晚餐' },
-        { pk: 4, group: 2, title: '宵夜' },
-        { pk: 5, group: 2, title: '早餐' },
-        { pk: 6, group: 3, title: '午晚餐' }
+      currentPlace: 0,
+      choices: [
+        { pk: 1, title: '便當', checked: false },
+        { pk: 2, title: '牛肉麵', checked: false },
+        { pk: 3, title: '水餃', checked: false },
+        { pk: 4, title: '涼麵', checked: false }
       ],
-      places: [],
       showSettingBtn: false,
       showAddForm: false,
       canFoucusAddForm: false
     }
   },
   created: function () {
-    this.places = this.placeArray.filter((place) => {
-      return place.group === this.pk
-    })
+    this.currentPlace = parseInt(this.$route.params.id)
   },
   methods: {
     afterEnter: function () {
@@ -74,10 +72,14 @@ export default {
     },
     leave: function () {
       this.canFoucusAddForm = false
+    },
+    checkItem: function (event) {
+      const choiceIndex = this.choices.findIndex(choice => choice.pk === event.pk)
+      this.choices[choiceIndex].checked = !this.choices[choiceIndex].checked
     }
   },
   components: {
-    groupItemUnit,
+    placeItemUnit,
     groupItemUnitAdd,
     draggable,
     settingBtn

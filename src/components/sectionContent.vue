@@ -10,7 +10,8 @@
   box-sizing: border-box;
   min-height: calc(100% - 13vh);
   margin-top: 12vh;
-  padding: 0 10%;
+  padding: 0;
   padding-top: 5%;
+  margin-bottom: 10vh;
 }
 </style>

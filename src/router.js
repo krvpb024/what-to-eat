@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import group from './views/group.vue'
+import place from './views/place.vue'
 import groupAdd from './views/groupAdd.vue'
 import About from './views/About.vue'
 
@@ -32,7 +33,11 @@ export default new Router({
         }
       ]
     },
-
+    {
+      path: '/place/:id',
+      name: 'place',
+      component: place
+    },
     {
       path: '/about',
       name: 'about',

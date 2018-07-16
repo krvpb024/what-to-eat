@@ -1,16 +1,24 @@
 <template>
   <div class="home-section-add">
-    <router-link to="/group/add" class="home-section-add-link">
+    <router-link :to="url" class="home-section-add-link">
       <slot></slot>
     </router-link>
   </div>
 </template>
 
+<script>
+export default {
+  props: {
+    url: String
+  }
+}
+</script>
+
 <style>
-.home-section-add-link {
+.home-section-add {
   align-items: center;
   border-radius: 50%;
-  bottom: 5%;
+  bottom: 4vh;
   background-color: #586f7c;
   color: #FFF;
   font-size: 2rem;

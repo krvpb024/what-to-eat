@@ -1,23 +1,20 @@
 <template>
   <section class="home-section">
     <section-header>
-      <router-link ></router-link>
-      <p slot="left">返回</p>
       {{title}}
-      <p slot="right">dd</p>
+      <!-- <p slot="right">dd</p> -->
     </section-header>
     <section-content>
       <ul>
-        <li
-          is="group-item"
+        <li is="group-item"
           v-for="group in groups"
-          :key="group.order"
-          :order="group.order"
+          :key="group.pk"
+          :pk="group.pk"
           :title="group.title"
         ></li>
       </ul>
     </section-content>
-    <action-btn>
+    <action-btn url="/group/add">
       <img src="../assets/image/add-btn.svg" alt="新增">
     </action-btn>
     <transition
@@ -44,8 +41,9 @@ export default {
   data: function () {
     return {
       groups: [
-        { order: 1, title: '項目1' },
-        { order: 2, title: '項目2' }
+        { pk: 1, title: '學校' },
+        { pk: 2, title: '家附近' },
+        { pk: 3, title: '公司' }
       ]
     }
   },
@@ -59,6 +57,10 @@ export default {
 </script>
 
 <style>
+.home-section {
+  animation-duration: 0.3s;
+  width: 100%;
+}
 ul {
   padding: 0;
 }
