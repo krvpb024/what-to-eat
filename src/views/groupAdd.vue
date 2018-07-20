@@ -14,10 +14,10 @@
         <fieldset class="groupadd-section-form-fieldset">
           <legend class="groupadd-section-legend">群組是為了區隔不同地點的選項</legend>
           <label for="place" class="groupadd-section-label">地點</label>
-          <input type="text" id="place" name="place" placeholder="例如：學校、公司、家附近" class="groupadd-section-input">
+          <input type="text" v-model="inputGroupTitle" id="place" name="place" placeholder="例如：學校、公司、家附近" class="groupadd-section-input">
         </fieldset>
       </form>
-      <action-btn>
+      <action-btn url="/" @click.native="addGroup">
         <img src="../assets/image/add-check.svg" alt="新增">
       </action-btn>
     </section-content>
@@ -35,6 +35,18 @@ export default {
   name: 'groupAdd',
   props: {
     title: String
+  },
+  data () {
+    return {
+      inputGroupTitle: ''
+    }
+  },
+  methods: {
+    addGroup () {
+      this.$store.commit('addGroup', {
+        groupTitle: this.inputGroupTitle
+      })
+    }
   },
   components: {
     sectionHeader,

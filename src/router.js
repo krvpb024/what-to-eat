@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import group from './views/group.vue'
-import place from './views/place.vue'
 import groupAdd from './views/groupAdd.vue'
+import place from './views/place.vue'
+import placeStart from './views/placeStart.vue'
 import About from './views/About.vue'
 
 Vue.use(Router)
@@ -36,7 +37,14 @@ export default new Router({
     {
       path: '/place/:id',
       name: 'place',
-      component: place
+      component: place,
+      children: [
+        {
+          path: 'start',
+          name: 'placeStart',
+          component: placeStart
+        }
+      ]
     },
     {
       path: '/about',

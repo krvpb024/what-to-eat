@@ -1,17 +1,19 @@
 <template>
-  <li v-if="choices.length > 0" class="listgoup-item">
-    <h2 class="listgoup-item-h2">{{title}}</h2>
+  <li class="listgoup-item">
     <ul class="listgoup-item-ngroup">
-      <draggable v-model="choices" :options="{handle:'.listgoup-item-ngroup-item-controlbtn'}">
+      <draggable
+        v-if="currentChoice.length > 0"
+        v-model="currentChoice"
+        :options="{handle:'.listgoup-item-ngroup-item-controlbtn'}"
+      >
         <li
           is="place-item-unit"
-          v-for="choice in choices"
+          v-for="choice in currentChoice"
           :key="choice.pk"
           :showSettingBtn="showSettingBtn"
           :pk="choice.pk"
           :placeTitle="choice.title"
           :checked="choice.checked"
-          @checkItem="checkItem"
         ></li>
       </draggable>
       <transition
@@ -25,6 +27,7 @@
           v-if="showAddForm"
           :showAddForm="showAddForm"
           :canFoucusAddForm="canFoucusAddForm"
+          @addTitle="addTitle"
         ></li>
       </transition>
       <li is="setting-btn"
@@ -43,28 +46,40 @@ import placeItemUnit from '@/components/place/placeItemUnit.vue'
 import groupItemUnitAdd from '@/components/group/groupItemUnitAdd.vue'
 import settingBtn from '@/components/group/settingBtn.vue'
 import draggable from 'vuedraggable'
+import { mapState } from 'vuex'
 
 export default {
-  props: {
-    pk: Number,
-    title: String
-  },
   data: function () {
     return {
-      currentPlace: 0,
-      choices: [
-        { pk: 1, title: '便當', checked: false },
-        { pk: 2, title: '牛肉麵', checked: false },
-        { pk: 3, title: '水餃', checked: false },
-        { pk: 4, title: '涼麵', checked: false }
-      ],
       showSettingBtn: false,
       showAddForm: false,
       canFoucusAddForm: false
     }
   },
-  created: function () {
-    this.currentPlace = parseInt(this.$route.params.id)
+  computed: {
+    currentPlace: function () {
+      return this.$route.params.id
+    },
+    currentChoice: {
+      get: function () {
+        return this.choices
+          .filter(choice => choice.place === this.currentPlace)
+          .sort((a, b) => {
+            return Number(a.order) - Number(b.order)
+          })
+      },
+      set: function (sortedChoices) {
+        const orderdChoices = sortedChoices.map((choice, index) => {
+          choice.order = index + 1
+          return choice
+        })
+        console.log(orderdChoices)
+        this.$store.commit('setChoiceOrder', { orderdChoices })
+      }
+    },
+    ...mapState([
+      'choices'
+    ])
   },
   methods: {
     afterEnter: function () {
@@ -73,9 +88,12 @@ export default {
     leave: function () {
       this.canFoucusAddForm = false
     },
-    checkItem: function (event) {
-      const choiceIndex = this.choices.findIndex(choice => choice.pk === event.pk)
-      this.choices[choiceIndex].checked = !this.choices[choiceIndex].checked
+    addTitle ({title}) {
+      this.$store.commit('addChoice', {
+        currentPlace: this.currentPlace,
+        title
+      })
+      this.showAddForm = !this.showAddForm
     }
   },
   components: {

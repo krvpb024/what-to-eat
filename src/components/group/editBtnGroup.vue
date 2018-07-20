@@ -1,7 +1,15 @@
 <template>
   <div class="edit-btn-wrap">
-    <form action="get" class="edit-btn-wrap-form">
-      <input type="text" ref='text' :class="{ editing: !notEdit }" v-model="editPlaceTitle" v-if="showSettingBtn" :disabled="notEdit">
+    <form class="edit-btn-wrap-form" @submit.prevent="controlEdit">
+      <input
+        type="text"
+        ref='text'
+        :class="{ editing: !notEdit }"
+        v-model="editPlaceTitleData"
+        v-if="showSettingBtn"
+        :disabled="notEdit"
+        @change="hasChanged = true"
+      >
     </form>
     <transition
     enter-active-class="animated slideInRight"
@@ -22,7 +30,7 @@
             <button class="listgoup-item-ngroup-item-controlbtn small" @click="controlEdit">
               <img src="../../assets/image/edit.svg" alt="編輯">
             </button>
-            <button class="listgoup-item-ngroup-item-controlbtn small" @click="changeMode">
+            <button class="listgoup-item-ngroup-item-controlbtn small" @click="changeMode('delete')">
               <img src="../../assets/image/trash.svg" alt="刪除">
             </button>
             <button class="listgoup-item-ngroup-item-controlbtn">
@@ -30,7 +38,7 @@
             </button>
           </div>
           <div class="btn-group delete-group" v-else-if="currentMode === 'delete'" :key="currentMode">
-            <button class="listgoup-item-ngroup-item-controlbtn" @click="changeMode">
+            <button class="listgoup-item-ngroup-item-controlbtn" @click="changeMode('confirm')">
               <img src="../../assets/image/confirm.svg" alt="確認">
             </button>
             <button class="listgoup-item-ngroup-item-controlbtn" @click="changeMode">
@@ -47,13 +55,23 @@
 export default {
   props: {
     showSettingBtn: Boolean,
-    editPlaceTitle: String
+    editPlaceTitle: String,
+    pk: {
+      type: String,
+      required: true
+    },
+    model: {
+      type: String,
+      required: true
+    }
   },
   data: function () {
     return {
       currentMode: 'edit',
       fixListWidth: false,
-      notEdit: true
+      notEdit: true,
+      editPlaceTitleData: this.editPlaceTitle,
+      hasChanged: false
     }
   },
   methods: {
@@ -63,15 +81,22 @@ export default {
         setTimeout(() => {
           this.$refs.text.focus()
         }, 10)
+      } else {
+        if (this.hasChanged) {
+          this.$store.commit(`edit${this.model}`, { title: this.editPlaceTitleData, pk: this.pk })
+        }
       }
     },
-    changeMode: function () {
+    changeMode: function (deleteAction) {
       switch (this.currentMode) {
         case 'edit': {
           this.currentMode = 'delete'
           break
         }
         case 'delete': {
+          if (deleteAction === 'confirm') {
+            this.$store.commit(`delete${this.model}`, { pk: this.pk })
+          }
           this.currentMode = 'edit'
           break
         }
@@ -91,6 +116,7 @@ export default {
 .edit-btn-wrap {
   display: flex;
   flex: 1;
+  user-select: none;
   & .edit-btn-wrap-form {
     flex: 9;
   }

@@ -4,7 +4,7 @@
       :enter-active-class="animationActive"
       :leave-active-class="animationLeave"
     >
-      <router-view/>
+      <router-view></router-view>
     </transition>
   </div>
 </template>
@@ -16,6 +16,9 @@ export default {
       animationActive: '',
       animationLeave: ''
     }
+  },
+  created: function () {
+    this.$store.commit('getInitialData')
   },
   watch: {
     '$route' (to, from) {

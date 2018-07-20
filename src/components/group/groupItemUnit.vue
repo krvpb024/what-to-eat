@@ -1,9 +1,15 @@
 <template>
   <li class="listgoup-item-ngroup-item">
-    <router-link to="/place/1" class="listgoup-item-ngroup-item-link" v-if="!showSettingBtn" :style="{ width: fixListWidth ? '30%' : '100%' }">
+    <router-link :to="`/place/${placePk}`" class="listgoup-item-ngroup-item-link" v-if="!showSettingBtn" :style="{ width: fixListWidth ? '30%' : '100%' }">
       {{placeTitle}}
     </router-link>
-    <edit-Btn-group :showSettingBtn="showSettingBtn" @modeChange="fixListWidth = !fixListWidth" :editPlaceTitle="editPlaceTitle"></edit-Btn-group>
+    <edit-Btn-group
+      :showSettingBtn="showSettingBtn"
+      @modeChange="fixListWidth = !fixListWidth"
+      :editPlaceTitle="editPlaceTitle"
+      :pk="placePk"
+      :model="model"
+    ></edit-Btn-group>
   </li>
 </template>
 
@@ -13,12 +19,17 @@ import editBtnGroup from '@/components/group/editBtnGroup.vue'
 export default {
   props: {
     showSettingBtn: Boolean,
-    placeTitle: String
+    placeTitle: String,
+    placePk: {
+      type: String,
+      required: true
+    }
   },
   data: function () {
     return {
       editPlaceTitle: this.placeTitle,
-      fixListWidth: false
+      fixListWidth: false,
+      model: 'Place'
     }
   },
   components: {

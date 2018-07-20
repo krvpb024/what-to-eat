@@ -2,7 +2,6 @@
   <section class="home-section">
     <section-header>
       {{title}}
-      <!-- <p slot="right">dd</p> -->
     </section-header>
     <section-content>
       <ul>
@@ -33,19 +32,17 @@ import sectionContent from '@/components/sectionContent.vue'
 import actionBtn from '@/components/actionBtn.vue'
 import groupItem from '@/components/group/groupItem.vue'
 
+import { mapState } from 'vuex'
+
 export default {
   name: 'group',
   props: {
     title: String
   },
-  data: function () {
-    return {
-      groups: [
-        { pk: 1, title: '學校' },
-        { pk: 2, title: '家附近' },
-        { pk: 3, title: '公司' }
-      ]
-    }
+  computed: {
+    ...mapState([
+      'groups'
+    ])
   },
   components: {
     sectionHeader,

@@ -1,8 +1,8 @@
 <template>
   <li class="listgoup-item-ngroup-item">
     <form action="">
-      <input ref='text' name="title" type="text" autocomplete="off">
-      <button>
+      <input ref='text' name="title" v-model="title" type="text" autocomplete="off">
+      <button @click.prevent="addTitle">
         <img src="../../assets/image/send.svg" alt="送出">
       </button>
     </form>
@@ -15,11 +15,21 @@ export default {
     showAddForm: Boolean,
     canFoucusAddForm: Boolean
   },
+  data: function () {
+    return {
+      title: ''
+    }
+  },
   watch: {
     canFoucusAddForm: function () {
       if (this.canFoucusAddForm) {
         this.$refs.text.focus()
       }
+    }
+  },
+  methods: {
+    addTitle () {
+      this.$emit('addTitle', { title: this.title })
     }
   }
 }

@@ -1,12 +1,14 @@
 <template>
-  <li v-if="placeArray.length > 0" class="listgoup-item">
+  <li v-if="places.length > 0" class="listgoup-item">
     <h2 class="listgoup-item-h2">{{title}}</h2>
     <ul class="listgoup-item-ngroup">
-      <draggable v-model="places" :options="{handle:'.listgoup-item-ngroup-item-controlbtn'}">
+      <draggable v-model="currentPlaces" :options="{handle:'.listgoup-item-ngroup-item-controlbtn'}">
         <li
           is="group-item-unit"
-          v-for="place in places"
+          v-for="place in currentPlaces"
           :key="place.pk"
+          :pk="pk"
+          :placePk="place.pk"
           :showSettingBtn="showSettingBtn"
           :placeTitle="place.title"
         ></li>
@@ -22,6 +24,7 @@
           v-if="showAddForm"
           :showAddForm="showAddForm"
           :canFoucusAddForm="canFoucusAddForm"
+          @addTitle="addTitle"
         ></li>
       </transition>
       <li is="setting-btn"
@@ -40,33 +43,47 @@ import groupItemUnit from '@/components/group/groupItemUnit.vue'
 import groupItemUnitAdd from '@/components/group/groupItemUnitAdd.vue'
 import settingBtn from '@/components/group/settingBtn.vue'
 import draggable from 'vuedraggable'
+import { mapState } from 'vuex'
 
 export default {
   props: {
-    pk: Number,
-    title: String
+    pk: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    }
   },
   data: function () {
     return {
       currentGroup: this.pk,
-      placeArray: [
-        { pk: 1, group: 1, title: '午晚餐' },
-        { pk: 2, group: 1, title: '飲料' },
-        { pk: 3, group: 2, title: '午晚餐' },
-        { pk: 4, group: 2, title: '宵夜' },
-        { pk: 5, group: 2, title: '早餐' },
-        { pk: 6, group: 3, title: '午晚餐' }
-      ],
-      places: [],
       showSettingBtn: false,
       showAddForm: false,
       canFoucusAddForm: false
     }
   },
-  created: function () {
-    this.places = this.placeArray.filter((place) => {
-      return place.group === this.pk
-    })
+  computed: {
+    currentPlaces: {
+      get: function () {
+        return this.places
+          .filter(place => place.group === this.pk)
+          .sort((a, b) => {
+            return Number(a.order) - Number(b.order)
+          })
+      },
+      set: function (sortedPlaces) {
+        const orderdPlaces = sortedPlaces.map((place, index) => {
+          place.order = index + 1
+          return place
+        })
+        this.$store.commit('setPlaceOrder', { orderdPlaces })
+      }
+    },
+    ...mapState([
+      'places'
+    ])
   },
   methods: {
     afterEnter: function () {
@@ -74,6 +91,13 @@ export default {
     },
     leave: function () {
       this.canFoucusAddForm = false
+    },
+    addTitle ({title}) {
+      this.$store.commit('addPlace', {
+        currentGroup: this.currentGroup,
+        title
+      })
+      this.showAddForm = !this.showAddForm
     }
   },
   components: {

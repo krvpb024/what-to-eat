@@ -20,9 +20,18 @@
 <script>
 export default {
   props: {
-    currentGroup: Number,
-    showAddForm: Boolean,
-    showSettingBtn: Boolean
+    currentGroup: {
+      type: String,
+      required: true
+    },
+    showAddForm: {
+      type: Boolean,
+      required: true
+    },
+    showSettingBtn: {
+      type: Boolean,
+      required: true
+    }
   },
   data: function () {
     return {
@@ -31,3 +40,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.listgoup-item-ngroup-item.controlbtn {
+  user-select: none;
+}
+</style>

@@ -4,32 +4,62 @@
       v-if="!showSettingBtn"
       class="listgoup-item-ngroup-item-link"
       :style="{ width: fixListWidth ? '30%' : '100%' }"
-      @click="$emit('checkItem', { pk })"
+      @click="checkItem"
     >
       <div class="listgoup-item-ngroup-item-link-check">
         <img src="../../assets/image/unchecked.svg" alt="unchecked" v-if="!checked">
-        <img src="../../assets/image/checked.svg" alt="unchecked" v-if="checked">
+        <img src="../../assets/image/checked.svg" alt="checked" v-if="checked">
       </div>
       <p class="listgoup-item-ngroup-item-link-title">{{placeTitle}}</p>
     </div>
-    <edit-Btn-group :showSettingBtn="showSettingBtn" @modeChange="fixListWidth = !fixListWidth" :editPlaceTitle="editPlaceTitle"></edit-Btn-group>
+    <edit-Btn-group
+      :showSettingBtn="showSettingBtn"
+      @modeChange="fixListWidth = !fixListWidth"
+      :editPlaceTitle="editPlaceTitle"
+      :pk="pk"
+      :model="model"
+    ></edit-Btn-group>
   </li>
 </template>
 
 <script>
 import editBtnGroup from '@/components/group/editBtnGroup.vue'
+import { mapState } from 'vuex'
 
 export default {
   props: {
-    pk: Number,
-    showSettingBtn: Boolean,
-    placeTitle: String,
-    checked: Boolean
+    pk: {
+      type: String,
+      required: true
+    },
+    showSettingBtn: {
+      type: Boolean,
+      required: true
+    },
+    placeTitle: {
+      type: String,
+      required: true
+    },
+    checked: {
+      type: Boolean,
+      required: true
+    }
   },
   data: function () {
     return {
       editPlaceTitle: this.placeTitle,
-      fixListWidth: false
+      fixListWidth: false,
+      model: 'Choice'
+    }
+  },
+  computed: {
+    ...mapState([
+      'choices'
+    ])
+  },
+  methods: {
+    checkItem () {
+      this.$store.commit('checkChoice', { pk: this.pk })
     }
   },
   components: {
