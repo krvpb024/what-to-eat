@@ -4,11 +4,6 @@
   "description": "A plain text description",
   "icons": [
     {
-      "src": "icon/ic_restaurant_48px.png",
-      "type": "image/png",
-      "sizes": "48x48"
-    },
-    {
       "src": "icon/ic_restaurant_48px@1.5x.png",
       "type": "image/png",
       "sizes": "72x72"
