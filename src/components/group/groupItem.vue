@@ -1,5 +1,5 @@
 <template>
-  <li v-if="places.length > 0" class="listgoup-item">
+  <li class="listgoup-item">
     <h2 class="listgoup-item-h2">{{title}}</h2>
     <ul class="listgoup-item-ngroup">
       <draggable v-model="currentPlaces" :options="{handle:'.listgoup-item-ngroup-item-controlbtn'}">
@@ -99,6 +99,9 @@ export default {
       })
       this.showAddForm = !this.showAddForm
     }
+  },
+  created () {
+    console.log(this.title)
   },
   components: {
     groupItemUnit,
