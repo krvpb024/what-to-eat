@@ -1,5 +1,6 @@
 module.exports = {
   outputDir: 'docs',
-  baseUrl: '',
-  assetsDir: './'
+  baseUrl: process.env.NODE_ENV === 'production'
+    ? '/krvpb024/'
+    : '/'
 }
