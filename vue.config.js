@@ -1,6 +1,6 @@
 module.exports = {
   outputDir: 'docs',
   baseUrl: process.env.NODE_ENV === 'production'
-    ? '/krvpb024/'
+    ? '/what-to-eat/'
     : '/'
 }
