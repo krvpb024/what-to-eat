@@ -20,7 +20,8 @@
     }
   ],
   "display": "standalone",
-  "scope": "/dist/",
+  "scope": "/docs/",
+  "start_url": "/",
   "background_color": "#b8dbd9",
   "theme_color": "#b8dbd9"
 }
