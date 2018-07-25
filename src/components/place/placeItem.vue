@@ -13,7 +13,6 @@
           :showSettingBtn="showSettingBtn"
           :pk="choice.pk"
           :placeTitle="choice.title"
-          :checked="choice.checked"
         ></li>
       </draggable>
       <transition
@@ -73,19 +72,19 @@ export default {
           choice.order = index + 1
           return choice
         })
-        console.log(orderdChoices)
         this.$store.commit('setChoiceOrder', { orderdChoices })
       }
     },
     ...mapState([
-      'choices'
+      'choices',
+      'checkedArray'
     ])
   },
   methods: {
-    afterEnter: function () {
+    afterEnter () {
       this.canFoucusAddForm = true
     },
-    leave: function () {
+    leave () {
       this.canFoucusAddForm = false
     },
     addTitle ({title}) {

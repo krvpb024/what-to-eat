@@ -22,10 +22,10 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      if (to.name === 'group') {
+      if ((to.name === 'group' && from.name === 'place') || (to.name === 'place' && from.name === 'choiceStart')) {
         this.animationActive = 'animated slideInLeft change'
         this.animationLeave = 'animated slideOutRight change'
-      } else {
+      } else if ((to.name === 'place' && from.name === 'group') || (to.name === 'choiceStart' && from.name === 'place')) {
         this.animationActive = 'animated slideInRight change'
         this.animationLeave = 'animated slideOutLeft change'
       }

@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import group from './views/group.vue'
 import groupAdd from './views/groupAdd.vue'
 import place from './views/place.vue'
-import placeStart from './views/placeStart.vue'
+import choiceStart from './views/choiceStart.vue'
 import About from './views/About.vue'
 
 Vue.use(Router)
@@ -37,14 +37,12 @@ export default new Router({
     {
       path: '/place/:id',
       name: 'place',
-      component: place,
-      children: [
-        {
-          path: 'start',
-          name: 'placeStart',
-          component: placeStart
-        }
-      ]
+      component: place
+    },
+    {
+      path: '/choiceStart/:placeId',
+      name: 'choiceStart',
+      component: choiceStart
     },
     {
       path: '/about',

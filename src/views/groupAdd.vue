@@ -29,7 +29,6 @@
 import sectionHeader from '@/components/sectionHeader.vue'
 import sectionContent from '@/components/sectionContent.vue'
 import actionBtn from '@/components/actionBtn.vue'
-import 'datalist-polyfill'
 
 export default {
   name: 'groupAdd',

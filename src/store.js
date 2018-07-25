@@ -8,39 +8,21 @@ export default new Vuex.Store({
   state: {
     groups: [],
     places: [],
-    choices: []
-  },
-  getter: {
-
+    choices: [],
+    checkedArray: []
   },
   mutations: {
     getInitialData (state) {
       if (!localStorage.getItem('groups')) {
-        const groupArray = [
-          { pk: '1', title: '學校', order: 1 },
-          { pk: '2', title: '家附近', order: 2 },
-          { pk: '3', title: '公司', order: 3 }
-        ]
+        const groupArray = []
         localStorage.setItem('groups', JSON.stringify(groupArray))
       }
       if (!localStorage.getItem('places')) {
-        const placeArray = [
-          { pk: '1', group: '1', title: '午晚餐', order: 1 },
-          { pk: '2', group: '1', title: '飲料', order: 2 },
-          { pk: '3', group: '2', title: '午晚餐', order: 1 },
-          { pk: '4', group: '2', title: '宵夜', order: 2 },
-          { pk: '5', group: '2', title: '早餐', order: 3 },
-          { pk: '6', group: '3', title: '午晚餐', order: 1 }
-        ]
+        const placeArray = []
         localStorage.setItem('places', JSON.stringify(placeArray))
       }
       if (!localStorage.getItem('choices')) {
-        const choiceArray = [
-          { pk: '1', place: '1', title: '便當', checked: false, order: 1 },
-          { pk: '2', place: '1', title: '牛肉麵', checked: false, order: 2 },
-          { pk: '3', place: '1', title: '水餃', checked: false, order: 3 },
-          { pk: '4', place: '1', title: '涼麵', checked: false, order: 4 }
-        ]
+        const choiceArray = []
         localStorage.setItem('choices', JSON.stringify(choiceArray))
       }
       state.groups = JSON.parse(localStorage.getItem('groups'))
@@ -48,11 +30,15 @@ export default new Vuex.Store({
       state.choices = JSON.parse(localStorage.getItem('choices'))
     },
     checkChoice (state, payload) {
-      const checkedIndex = state.choices.findIndex(choice => choice.pk === payload.pk)
-      const editedItem = state.choices[checkedIndex]
-      editedItem.checked = !editedItem.checked
-      state.choices.splice(checkedIndex, 1, editedItem)
-      localStorage.setItem('choices', JSON.stringify(state.choices))
+      if (state.checkedArray.indexOf(payload.title) === -1) {
+        state.checkedArray.push(payload.title)
+      } else {
+        const removeIndex = state.checkedArray.indexOf(payload.title)
+        state.checkedArray.splice(removeIndex, 1)
+      }
+    },
+    clearCheckArray (state) {
+      state.checkedArray = []
     },
     addGroup (state, payload) {
       const pk = uuidv1()
@@ -81,7 +67,7 @@ export default new Vuex.Store({
       localStorage.setItem('places', JSON.stringify(state.places))
     },
     addChoice (state, payload) {
-      // { pk: '1', place: '1', title: '便當', checked: false, order: 1 }
+      // { pk: '1', place: '1', title: '便當', order: 1 }
       const pk = uuidv1()
       const place = payload.currentPlace
       const title = payload.title
@@ -91,8 +77,7 @@ export default new Vuex.Store({
         pk,
         place,
         title,
-        checked: false,
-        order: order
+        order
       })
       localStorage.setItem('choices', JSON.stringify(state.choices))
     },

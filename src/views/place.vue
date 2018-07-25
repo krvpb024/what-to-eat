@@ -11,7 +11,7 @@
     <section-content>
       <place-item :choices="choices"></place-item>
     </section-content>
-    <action-btn url="/about">
+    <action-btn :url="`/choiceStart/${id}`">
       <img src="../assets/image/add-check.svg" alt="新增">
     </action-btn>
   </section>
@@ -26,26 +26,25 @@ import placeItem from '@/components/place/placeItem.vue'
 import { mapState } from 'vuex'
 
 export default {
-  data: function () {
+  data () {
     return {
-      currentChoice: []
+      id: this.$route.params.id
     }
   },
   computed: {
     title () {
-      const { id } = this.$route.params
-      const place = this.places.find(place => place.pk === id)
+      const place = this.places.find(place => place.pk === this.id)
       const group = this.groups.find(group => group.pk === place.group)
       return `${group.title}-${place.title}`
+    },
+    currentChoice () {
+      return this.choices.filter(choice => choice.place === this.pk)
     },
     ...mapState([
       'groups',
       'places',
       'choices'
     ])
-  },
-  created () {
-    this.currentChoice = this.choices.filter(choice => choice.place === this.pk)
   },
   components: {
     sectionHeader,

@@ -44,6 +44,9 @@ export default {
       'groups'
     ])
   },
+  created () {
+    this.$store.commit('clearCheckArray')
+  },
   components: {
     sectionHeader,
     sectionContent,

@@ -28,22 +28,9 @@ import { mapState } from 'vuex'
 
 export default {
   props: {
-    pk: {
-      type: String,
-      required: true
-    },
-    showSettingBtn: {
-      type: Boolean,
-      required: true
-    },
-    placeTitle: {
-      type: String,
-      required: true
-    },
-    checked: {
-      type: Boolean,
-      required: true
-    }
+    pk: { type: String, required: true },
+    showSettingBtn: { type: Boolean, required: true },
+    placeTitle: { type: String, required: true }
   },
   data: function () {
     return {
@@ -53,13 +40,20 @@ export default {
     }
   },
   computed: {
+    checked () {
+      if (this.checkedArray.indexOf(this.placeTitle) !== -1) {
+        return true
+      }
+      return false
+    },
     ...mapState([
-      'choices'
+      'choices',
+      'checkedArray'
     ])
   },
   methods: {
     checkItem () {
-      this.$store.commit('checkChoice', { pk: this.pk })
+      this.$store.commit('checkChoice', { pk: this.pk, title: this.placeTitle })
     }
   },
   components: {
