@@ -100,9 +100,6 @@ export default {
       this.showAddForm = !this.showAddForm
     }
   },
-  created () {
-    console.log(this.title)
-  },
   components: {
     groupItemUnit,
     groupItemUnitAdd,

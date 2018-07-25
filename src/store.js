@@ -72,7 +72,6 @@ export default new Vuex.Store({
       const place = payload.currentPlace
       const title = payload.title
       const order = Number(state.choices.length) + 1
-      console.log(pk, place, title)
       state.choices.push({
         pk,
         place,
