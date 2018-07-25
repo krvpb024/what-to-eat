@@ -14,11 +14,6 @@
       "sizes": "72x72"
     },
     {
-      "src": "icon/ic_restaurant_48px@2x.png",
-      "type": "image/png",
-      "sizes": "96x96"
-    },
-    {
       "src": "icon/ic_restaurant_48px@3x.png",
       "type": "image/png",
       "sizes": "144x144"
