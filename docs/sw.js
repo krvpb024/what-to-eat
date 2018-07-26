@@ -1,24 +1,6 @@
-/**
- * Welcome to your Workbox-powered service worker!
- *
- * You'll need to register this file in your web app and you should
- * disable HTTP caching for this file too.
- * See https://goo.gl/nhQhGp
- *
- * The rest of the code is auto-generated. Please don't update this file
- * directly; instead, make changes to your Workbox build configuration
- * and re-run your build process.
- * See https://goo.gl/2aRDsh
- */
-
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js");
-
-/**
- * The workboxSW.precacheAndRoute() method efficiently caches and responds to
- * requests for URLs in the manifest.
- * See https://goo.gl/S9QRab
- */
-self.__precacheManifest = [
+// Workbox injectManifest
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0-beta.1/workbox-sw.js')
+workbox.precaching.precacheAndRoute([
   {
     "url": "css/app.5d46af2f.css",
     "revision": "056dc2ac5532dbb8d0f7f8c65b80f8a5"
@@ -121,12 +103,16 @@ self.__precacheManifest = [
   },
   {
     "url": "manifest.json",
-    "revision": "255e4786788cf15ee75669da96743731"
+    "revision": "ca6a322c5bccf926ab30816abc8946b6"
   },
   {
     "url": "serviceworker.js",
     "revision": "eec98f5d3efc66d21420fd15beda2a6f"
   }
-].concat(self.__precacheManifest || []);
-workbox.precaching.suppressWarnings();
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+])
+// Workbox injectManifest End
+
+self.addEventListener('install', event => {
+  console.log('install')
+  self.skipWaiting()
+})

@@ -25,8 +25,8 @@
     }
   ],
   "display": "standalone",
-  "scope": "/docs/",
-  "start_url": "/what-to-eat",
+  "scope": "/what-to-eat/",
+  "start_url": "./",
   "background_color": "#b8dbd9",
   "theme_color": "#b8dbd9"
 }
