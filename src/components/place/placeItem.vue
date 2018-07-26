@@ -2,7 +2,7 @@
   <li class="listgoup-item">
     <ul class="listgoup-item-ngroup">
       <p v-if="currentChoice.length === 0" class="sign">該類別目前沒有任何選擇</p>
-      <p v-else class="sign">請至少勾選兩個項目</p>
+      <p class="sign black">請至少勾選兩個項目</p>
       <draggable
         v-if="currentChoice.length > 0"
         v-model="currentChoice"
@@ -56,6 +56,18 @@ export default {
       showSettingBtn: false,
       showAddForm: false,
       canFoucusAddForm: false
+    }
+  },
+  watch: {
+    showSettingBtn () {
+      if (this.showSettingBtn) {
+        this.showAddForm = false
+      }
+    },
+    showAddForm () {
+      if (this.showAddForm) {
+        this.showSettingBtn = false
+      }
     }
   },
   computed: {
@@ -122,5 +134,8 @@ export default {
 .listgoup-item-ngroup {
   list-style: none;
   overflow: hidden;
+}
+.sign.black {
+  color: black;
 }
 </style>

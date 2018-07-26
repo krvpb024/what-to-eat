@@ -26,14 +26,21 @@
           :placeTitle="place.title"
         ></li>
       </draggable>
-      <li is="group-item-unit-add"
-        :key="`${currentGroup}-addform`"
-        v-if="showAddForm"
-        :showAddForm="showAddForm"
-        :canFoucusAddForm="canFoucusAddForm"
-        @addTitle="addTitle"
-        placeholder="例如：午晚餐、下午茶、飲料等類別"
-      ></li>
+      <transition
+        enter-active-class="animated slideInRight"
+        leave-active-class="animated slideOutRight"
+        v-on:after-enter="afterEnter"
+        v-on:leave="leave"
+      >
+        <li is="group-item-unit-add"
+          :key="`${currentGroup}-addform`"
+          v-if="showAddForm"
+          :showAddForm="showAddForm"
+          :canFoucusAddForm="canFoucusAddForm"
+          @addTitle="addTitle"
+          placeholder="例如：午晚餐、下午茶、飲料等類別"
+        ></li>
+      </transition>
       <li is="setting-btn"
         :currentGroup="currentGroup"
         :showAddForm="showAddForm"
@@ -69,6 +76,18 @@ export default {
       showSettingBtn: false,
       showAddForm: false,
       canFoucusAddForm: false
+    }
+  },
+  watch: {
+    showSettingBtn () {
+      if (this.showSettingBtn) {
+        this.showAddForm = false
+      }
+    },
+    showAddForm () {
+      if (this.showAddForm) {
+        this.showSettingBtn = false
+      }
     }
   },
   computed: {
