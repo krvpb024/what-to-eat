@@ -4,7 +4,6 @@ import group from './views/group.vue'
 import groupAdd from './views/groupAdd.vue'
 import place from './views/place.vue'
 import choiceStart from './views/choiceStart.vue'
-import About from './views/About.vue'
 
 Vue.use(Router)
 
@@ -42,11 +41,6 @@ export default new Router({
       path: '/choiceStart/:placeId',
       name: 'choiceStart',
       component: choiceStart
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About
     }
   ]
 })

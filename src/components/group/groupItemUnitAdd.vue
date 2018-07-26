@@ -1,8 +1,16 @@
 <template>
   <li class="listgoup-item-ngroup-item">
-    <form action="">
-      <input ref='text' name="title" v-model="title" type="text" autocomplete="off">
-      <button @click.prevent="addTitle">
+    <form @submit.prevent="addTitle">
+      <input
+        ref='text'
+        name="title"
+        v-model="title"
+        :placeholder="placeholder"
+        type="text"
+        autocomplete="off"
+        required
+      >
+      <button type="submit">
         <img src="../../assets/image/send.svg" alt="送出">
       </button>
     </form>
@@ -12,8 +20,18 @@
 <script>
 export default {
   props: {
-    showAddForm: Boolean,
-    canFoucusAddForm: Boolean
+    showAddForm: {
+      type: Boolean,
+      required: true
+    },
+    canFoucusAddForm: {
+      type: Boolean,
+      required: true
+    },
+    placeholder: {
+      type: String,
+      required: true
+    }
   },
   data: function () {
     return {

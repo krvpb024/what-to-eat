@@ -10,16 +10,16 @@
       </template>
     </section-header>
     <section-content>
-      <form action="get" class="groupadd-section-form">
+      <form action="get" class="groupadd-section-form" @submit.prevent="addGroup">
         <fieldset class="groupadd-section-form-fieldset">
           <legend class="groupadd-section-legend">群組是為了區隔不同地點的選項</legend>
           <label for="place" class="groupadd-section-label">地點</label>
-          <input type="text" v-model="inputGroupTitle" id="place" name="place" placeholder="例如：學校、公司、家附近" class="groupadd-section-input">
+          <input type="text" v-model="inputGroupTitle" id="place" name="place" placeholder="例如：學校、公司、家附近" class="groupadd-section-input" required autocomplete="off">
         </fieldset>
+        <button type="submit" class="home-section-add spc">
+          <img src="../assets/image/add-check.svg" alt="新增">
+        </button>
       </form>
-      <action-btn url="/" @click.native="addGroup">
-        <img src="../assets/image/add-check.svg" alt="新增">
-      </action-btn>
     </section-content>
     </scroll-lock>
   </section>
@@ -45,6 +45,7 @@ export default {
       this.$store.commit('addGroup', {
         groupTitle: this.inputGroupTitle
       })
+      this.$router.push({ name: 'index' })
     }
   },
   components: {
@@ -78,6 +79,9 @@ export default {
 }
 .groupadd-section-form {
   text-align: center;
+  & button {
+    padding: 0;
+  }
 }
 .groupadd-section-form-fieldset {
   border: 0;
@@ -97,5 +101,11 @@ export default {
   margin-bottom: 3%;
   padding: 10px;
   width: 100%;
+}
+.home-section-add.spc {
+  bottom: initial;
+  left: initial;
+  position: relative;
+  transform: initial;
 }
 </style>

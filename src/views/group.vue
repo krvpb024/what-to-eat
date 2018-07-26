@@ -4,7 +4,7 @@
       {{title}}
     </section-header>
     <section-content>
-      <ul>
+      <ul v-if="groups.length > 0">
         <li is="group-item"
           v-for="group in groups"
           :key="group.pk"
@@ -12,6 +12,8 @@
           :title="group.title"
         ></li>
       </ul>
+      <p class="sign" v-else>目前沒有任何群組
+        <br>請點選下方按鈕新增</p>
     </section-content>
     <action-btn url="/group/add">
       <img src="../assets/image/add-btn.svg" alt="新增">
@@ -63,5 +65,11 @@ export default {
 }
 ul {
   padding: 0;
+}
+.sign {
+  color: #04724d;
+  font-weight: normal;
+  font-size: 1.2rem;
+  text-align: center;
 }
 </style>

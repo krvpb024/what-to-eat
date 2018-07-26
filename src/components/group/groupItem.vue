@@ -2,6 +2,7 @@
   <li class="listgoup-item">
     <h2 class="listgoup-item-h2">{{title}}</h2>
     <ul class="listgoup-item-ngroup">
+      <p v-if="currentPlaces.length === 0" class="sign">該群組目前沒有任何類別</p>
       <draggable v-model="currentPlaces" :options="{handle:'.listgoup-item-ngroup-item-controlbtn'}">
         <li
           is="group-item-unit"
@@ -25,6 +26,7 @@
           :showAddForm="showAddForm"
           :canFoucusAddForm="canFoucusAddForm"
           @addTitle="addTitle"
+          placeholder="例如：午晚餐、下午茶、飲料等類別"
         ></li>
       </transition>
       <li is="setting-btn"

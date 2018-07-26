@@ -1,6 +1,7 @@
 <template>
   <li class="listgoup-item">
     <ul class="listgoup-item-ngroup">
+      <p v-if="currentChoice.length === 0" class="sign">該類別目前沒有任何選擇</p>
       <draggable
         v-if="currentChoice.length > 0"
         v-model="currentChoice"
@@ -27,6 +28,7 @@
           :showAddForm="showAddForm"
           :canFoucusAddForm="canFoucusAddForm"
           @addTitle="addTitle"
+          placeholder="例如：XX便當、OO滷肉飯"
         ></li>
       </transition>
       <li is="setting-btn"

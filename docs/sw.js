@@ -20,8 +20,8 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox
  */
 self.__precacheManifest = [
   {
-    "url": "css/app.b51f762c.css",
-    "revision": "208c419e9c81a7c10ca0748940dacc48"
+    "url": "css/app.5d46af2f.css",
+    "revision": "056dc2ac5532dbb8d0f7f8c65b80f8a5"
   },
   {
     "url": "icon/ic_restaurant_48px.png",
@@ -109,11 +109,11 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "a3b7a731b05da1ed23e4eca7cb36877e"
+    "revision": "435b08168b69713bd62fe06624dc6283"
   },
   {
-    "url": "js/app.fc50db6b.js",
-    "revision": "2a8741cfa3af5c9d78ab84f4eaa033d5"
+    "url": "js/app.408cfb06.js",
+    "revision": "ccf1b502e0a42a6f30bd43c4d4679491"
   },
   {
     "url": "js/chunk-vendors.aa3ecb21.js",
