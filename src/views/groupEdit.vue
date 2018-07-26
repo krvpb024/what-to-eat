@@ -10,7 +10,7 @@
       </template>
     </section-header>
     <section-content>
-      <form action="get" class="groupadd-section-form" @submit.prevent="addGroup">
+      <form action="get" class="groupadd-section-form" @submit.prevent="editGroup">
         <fieldset class="groupadd-section-form-fieldset">
           <legend class="groupadd-section-legend">群組是為了區隔不同地點的選項</legend>
           <label for="place" class="groupadd-section-label">地點</label>
@@ -18,6 +18,9 @@
         </fieldset>
         <button type="submit" class="home-section-add spc">
           <img src="../assets/image/add-check.svg" alt="新增">
+        </button>
+        <button type="button" class="home-section-add spc delete" @click="deleteGroup">
+          <img src="../assets/image/trash-white.svg" alt="刪除">
         </button>
       </form>
     </section-content>
@@ -30,20 +33,40 @@ import sectionHeader from '@/components/sectionHeader.vue'
 import sectionContent from '@/components/sectionContent.vue'
 import actionBtn from '@/components/actionBtn.vue'
 
+import { mapState } from 'vuex'
+
 export default {
-  name: 'groupAdd',
   props: {
     title: String
   },
   data () {
     return {
-      inputGroupTitle: ''
+      inputGroupTitle: '',
+      pk: this.$route.params.pk
     }
   },
+  created () {
+    this.inputGroupTitle = this.currentGroup.title
+  },
+  computed: {
+    currentGroup () {
+      return this.groups.filter(group => group.pk === this.pk)[0]
+    },
+    ...mapState([
+      'groups'
+    ])
+  },
   methods: {
-    addGroup () {
-      this.$store.commit('addGroup', {
-        groupTitle: this.inputGroupTitle
+    editGroup () {
+      this.$store.commit('editGroup', {
+        pk: this.pk,
+        editTitle: this.inputGroupTitle
+      })
+      this.$router.push({ name: 'index' })
+    },
+    deleteGroup () {
+      this.$store.commit('deleteGroup', {
+        pk: this.pk
       })
       this.$router.push({ name: 'index' })
     }
@@ -56,57 +79,12 @@ export default {
 }
 </script>
 
-<style>
-.groupadd-section {
-  animation-duration: 0.3s;
-  background-color: #fff;
-  height: 120vh;
-  position: fixed;
-  text-align: center;
-  top: 0;
-  width: 100vw;
-  z-index: 110;
-}
-.lock-body-scroll {
-  height: 100%;
-  width: 100%;
-}
-.groupadd-section-legend {
-  color: #04724d;
-  font-size: 1.2rem;
-  font-weight: normal;
-  margin-bottom: 2%;
-}
-.groupadd-section-form {
-  text-align: center;
-  & button {
-    padding: 0;
+<style scoped>
+.home-section-add.delete {
+  background-color: red;
+  margin-left: 5%;
+  & img {
+    margin: 20%;
   }
-}
-.groupadd-section-form-fieldset {
-  border: 0;
-}
-.groupadd-section-label {
-  display: inline-block;
-  font-size: 1.1rem;
-  margin-bottom: 3%;
-  width: 100%;
-}
-.groupadd-section-input {
-  box-sizing: border-box;
-  border: 0;
-  border-bottom: 1px solid black;
-  border-radius: 0;
-  display: inline-block;
-  margin-bottom: 3%;
-  padding: 10px;
-  width: 100%;
-}
-.home-section-add.spc {
-  border: none;
-  bottom: initial;
-  left: initial;
-  position: relative;
-  transform: initial;
 }
 </style>

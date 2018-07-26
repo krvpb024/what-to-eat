@@ -1,20 +1,25 @@
 <template>
-  <li class="listgoup-item-ngroup-item">
-    <form @submit.prevent="addTitle">
-      <input
-        ref='text'
-        name="title"
-        v-model="title"
-        :placeholder="placeholder"
-        type="text"
-        autocomplete="off"
-        required
-      >
-      <button type="submit">
-        <img src="../../assets/image/send.svg" alt="送出">
-      </button>
-    </form>
-  </li>
+  <transition
+    enter-active-class="animated slideInRight"
+    leave-active-class="animated slideOutRight"
+  >
+    <li class="listgoup-item-ngroup-item">
+      <form @submit.prevent="addTitle">
+        <input
+          ref='text'
+          name="title"
+          v-model="title"
+          :placeholder="placeholder"
+          type="text"
+          autocomplete="off"
+          required
+        >
+        <button type="submit">
+          <img src="../../assets/image/send.svg" alt="送出">
+        </button>
+      </form>
+    </li>
+  </transition>
 </template>
 
 <script>

@@ -1,16 +1,21 @@
 <template>
-  <li class="listgoup-item-ngroup-item">
-    <router-link :to="`/place/${placePk}`" class="listgoup-item-ngroup-item-link" v-if="!showSettingBtn" :style="{ width: fixListWidth ? '30%' : '100%' }">
-      {{placeTitle}}
-    </router-link>
-    <edit-Btn-group
-      :showSettingBtn="showSettingBtn"
-      @modeChange="fixListWidth = !fixListWidth"
-      :editPlaceTitle="editPlaceTitle"
-      :pk="placePk"
-      :model="model"
-    ></edit-Btn-group>
-  </li>
+  <transition
+    enter-active-class="animated slideInRight"
+    leave-active-class="animated slideOutRight"
+  >
+    <li class="listgoup-item-ngroup-item">
+      <router-link :to="`/place/${placePk}`" class="listgoup-item-ngroup-item-link" v-if="!showSettingBtn" :style="{ width: fixListWidth ? '30%' : '100%' }">
+        {{placeTitle}}
+      </router-link>
+      <edit-Btn-group
+        :showSettingBtn="showSettingBtn"
+        @modeChange="fixListWidth = !fixListWidth"
+        :editPlaceTitle="editPlaceTitle"
+        :pk="placePk"
+        :model="model"
+      ></edit-Btn-group>
+    </li>
+  </transition>
 </template>
 
 <script>

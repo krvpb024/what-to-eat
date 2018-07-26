@@ -1,6 +1,18 @@
 <template>
   <li class="listgoup-item">
-    <h2 class="listgoup-item-h2">{{title}}</h2>
+    <div class="listgoup-item-title">
+      <h2 class="listgoup-item-h2">{{title}}</h2>
+      <transition
+        enter-active-class="animated slideInRight"
+        leave-active-class="animated slideOutRight"
+      >
+        <div class="setting-btn-group" v-if="showSettingBtn">
+          <button class="listgoup-item-ngroup-item-controlbtn small" type="button" @click="toEdit">
+            <img src="../../assets/image/edit.svg" alt="編輯">
+          </button>
+        </div>
+      </transition>
+    </div>
     <ul class="listgoup-item-ngroup">
       <p v-if="currentPlaces.length === 0" class="sign">該群組目前沒有任何類別</p>
       <draggable v-model="currentPlaces" :options="{handle:'.listgoup-item-ngroup-item-controlbtn'}">
@@ -14,21 +26,14 @@
           :placeTitle="place.title"
         ></li>
       </draggable>
-      <transition
-        enter-active-class="animated slideInRight"
-        leave-active-class="animated slideOutRight"
-        v-on:after-enter="afterEnter"
-        v-on:leave="leave"
-      >
-        <li is="group-item-unit-add"
-          :key="`${currentGroup}-addform`"
-          v-if="showAddForm"
-          :showAddForm="showAddForm"
-          :canFoucusAddForm="canFoucusAddForm"
-          @addTitle="addTitle"
-          placeholder="例如：午晚餐、下午茶、飲料等類別"
-        ></li>
-      </transition>
+      <li is="group-item-unit-add"
+        :key="`${currentGroup}-addform`"
+        v-if="showAddForm"
+        :showAddForm="showAddForm"
+        :canFoucusAddForm="canFoucusAddForm"
+        @addTitle="addTitle"
+        placeholder="例如：午晚餐、下午茶、飲料等類別"
+      ></li>
       <li is="setting-btn"
         :currentGroup="currentGroup"
         :showAddForm="showAddForm"
@@ -88,10 +93,10 @@ export default {
     ])
   },
   methods: {
-    afterEnter: function () {
+    afterEnter () {
       this.canFoucusAddForm = true
     },
-    leave: function () {
+    leave () {
       this.canFoucusAddForm = false
     },
     addTitle ({title}) {
@@ -100,6 +105,9 @@ export default {
         title
       })
       this.showAddForm = !this.showAddForm
+    },
+    toEdit () {
+      this.$router.push({ name: 'groupEdit', params: { pk: this.pk } })
     }
   },
   components: {
@@ -118,11 +126,23 @@ export default {
   overflow: hidden;
   padding: 2% 0;
 }
-.listgoup-item-h2 {
-  color: #04724d;
-  padding-left: 3%;
-  text-decoration: none;
+.listgoup-item-title {
+  display: flex;
+  & .listgoup-item-h2 {
+    color: #04724d;
+    flex: 9;
+    padding-left: 3%;
+    text-decoration: none;
+  }
+  & .setting-btn-group {
+    align-items: center;
+    animation-duration: 0.3s;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
 }
+
 .listgoup-item-ngroup {
   list-style: none;
   overflow: hidden;

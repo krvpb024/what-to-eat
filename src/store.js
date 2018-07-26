@@ -51,6 +51,20 @@ export default new Vuex.Store({
       })
       localStorage.setItem('groups', JSON.stringify(state.groups))
     },
+    editGroup (state, payload) {
+      const groupArray = JSON.parse(localStorage.getItem('groups'))
+      const editIndex = groupArray.findIndex(group => group.pk === payload.pk)
+      groupArray[editIndex].title = payload.editTitle
+      state.groups = groupArray
+      localStorage.setItem('groups', JSON.stringify(state.groups))
+    },
+    deleteGroup (state, payload) {
+      const groupArray = JSON.parse(localStorage.getItem('groups'))
+      const deleteIndex = groupArray.findIndex(group => group.pk === payload.pk)
+      groupArray.splice(deleteIndex, 1)
+      state.groups = groupArray
+      localStorage.setItem('groups', JSON.stringify(state.groups))
+    },
     addPlace (state, payload) {
       // { pk: '1', group: '1', title: '午晚餐', order: 1 },
       const pk = uuidv1()

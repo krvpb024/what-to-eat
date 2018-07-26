@@ -103,7 +103,7 @@ export default {
         } else {
           this.deg += v
         }
-        v *= 0.9
+        v *= 0.95
         canvas.style.transform = `rotate(${this.deg}deg)`
         if (Math.round(v) === 0) {
           clearInterval(momentum)

@@ -4,6 +4,5 @@ workbox.precaching.precacheAndRoute([])
 // Workbox injectManifest End
 
 self.addEventListener('install', event => {
-  console.log('install')
   self.skipWaiting()
 })

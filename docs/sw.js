@@ -2,8 +2,8 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0-beta.1/workbox-sw.js')
 workbox.precaching.precacheAndRoute([
   {
-    "url": "css/app.5d46af2f.css",
-    "revision": "056dc2ac5532dbb8d0f7f8c65b80f8a5"
+    "url": "css/app.f976f4f7.css",
+    "revision": "9130afc7041e18e41aac2ce902799691"
   },
   {
     "url": "icon/ic_restaurant_48px.png",
@@ -91,11 +91,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "d2d919f0198e4f7d48064011a5da1998"
+    "revision": "ff9f081c0e106e24c8c803258df4a3a9"
   },
   {
-    "url": "js/app.b7de5799.js",
-    "revision": "625acfbb561f4b602786e57425cfec6e"
+    "url": "js/app.1de7313d.js",
+    "revision": "27798f94d6e0b9284c60a4f1be9dbeb3"
   },
   {
     "url": "js/chunk-vendors.aa3ecb21.js",
@@ -113,6 +113,5 @@ workbox.precaching.precacheAndRoute([
 // Workbox injectManifest End
 
 self.addEventListener('install', event => {
-  console.log('install')
   self.skipWaiting()
 })
