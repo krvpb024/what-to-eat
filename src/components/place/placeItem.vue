@@ -2,6 +2,7 @@
   <li class="listgoup-item">
     <ul class="listgoup-item-ngroup">
       <p v-if="currentChoice.length === 0" class="sign">該類別目前沒有任何選擇</p>
+      <p v-else class="sign">請至少勾選兩個項目</p>
       <draggable
         v-if="currentChoice.length > 0"
         v-model="currentChoice"

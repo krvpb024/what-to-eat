@@ -11,6 +11,9 @@ export default new Vuex.Store({
     choices: [],
     checkedArray: []
   },
+  getters: {
+    checkedLength: state => state.checkedArray.length
+  },
   mutations: {
     getInitialData (state) {
       if (!localStorage.getItem('groups')) {

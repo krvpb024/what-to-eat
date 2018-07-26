@@ -11,8 +11,8 @@
     <section-content>
       <place-item :choices="choices"></place-item>
     </section-content>
-    <action-btn :url="`/choiceStart/${id}`">
-      <img src="../assets/image/add-check.svg" alt="新增">
+    <action-btn :url="`/choiceStart/${id}`" v-show="checkedLength >= 2">
+      <img src="../assets/image/add-check.svg" alt="送出">
     </action-btn>
   </section>
 </template>
@@ -23,7 +23,7 @@ import sectionContent from '@/components/sectionContent.vue'
 import actionBtn from '@/components/actionBtn.vue'
 import placeItem from '@/components/place/placeItem.vue'
 
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -40,6 +40,9 @@ export default {
     currentChoice () {
       return this.choices.filter(choice => choice.place === this.pk)
     },
+    ...mapGetters([
+      'checkedLength'
+    ]),
     ...mapState([
       'groups',
       'places',

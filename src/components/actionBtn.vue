@@ -1,6 +1,6 @@
 <template>
   <div class="home-section-add">
-    <router-link :to="url" class="home-section-add-link">
+    <router-link :to="url" class="home-section-add-link" disabled>
       <slot></slot>
     </router-link>
   </div>
@@ -9,7 +9,8 @@
 <script>
 export default {
   props: {
-    url: String
+    url: String,
+    canGo: Boolean
   }
 }
 </script>

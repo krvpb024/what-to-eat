@@ -1,25 +1,30 @@
 <template>
-  <li class="listgoup-item-ngroup-item">
-    <div
-      v-if="!showSettingBtn"
-      class="listgoup-item-ngroup-item-link"
-      :style="{ width: fixListWidth ? '30%' : '100%' }"
-      @click="checkItem"
-    >
-      <div class="listgoup-item-ngroup-item-link-check">
-        <img src="../../assets/image/unchecked.svg" alt="unchecked" v-if="!checked">
-        <img src="../../assets/image/checked.svg" alt="checked" v-if="checked">
+  <transition
+    enter-active-class="animated slideInRight"
+    leave-active-class="animated slideOutRight"
+  >
+    <li class="listgoup-item-ngroup-item">
+      <div
+        v-if="!showSettingBtn"
+        class="listgoup-item-ngroup-item-link"
+        :style="{ width: fixListWidth ? '30%' : '100%' }"
+        @click="checkItem"
+      >
+        <div class="listgoup-item-ngroup-item-link-check">
+          <img src="../../assets/image/unchecked.svg" alt="unchecked" v-if="!checked">
+          <img src="../../assets/image/checked.svg" alt="checked" v-if="checked">
+        </div>
+        <p class="listgoup-item-ngroup-item-link-title">{{placeTitle}}</p>
       </div>
-      <p class="listgoup-item-ngroup-item-link-title">{{placeTitle}}</p>
-    </div>
-    <edit-Btn-group
-      :showSettingBtn="showSettingBtn"
-      @modeChange="fixListWidth = !fixListWidth"
-      :editPlaceTitle="editPlaceTitle"
-      :pk="pk"
-      :model="model"
-    ></edit-Btn-group>
-  </li>
+      <edit-Btn-group
+        :showSettingBtn="showSettingBtn"
+        @modeChange="fixListWidth = !fixListWidth"
+        :editPlaceTitle="editPlaceTitle"
+        :pk="pk"
+        :model="model"
+      ></edit-Btn-group>
+    </li>
+  </transition>
 </template>
 
 <script>
