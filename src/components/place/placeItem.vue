@@ -28,7 +28,7 @@
           :showAddForm="showAddForm"
           :canFoucusAddForm="canFoucusAddForm"
           @addTitle="addTitle"
-          placeholder="例如：XX便當、OO滷肉飯"
+          placeholder="例如：便當、拉麵"
         ></li>
       </transition>
       <li is="setting-btn"
