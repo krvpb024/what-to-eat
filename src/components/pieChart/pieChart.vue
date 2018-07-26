@@ -80,9 +80,4 @@ export default {
     width: 50%;
   }
 }
-.content {
-  & p {
-    margin: 0;
-  }
-}
 </style>

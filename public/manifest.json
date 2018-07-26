@@ -17,10 +17,15 @@
       "src": "icon/ic_restaurant_48px@4x.png",
       "type": "image/png",
       "sizes": "192x192"
+    },
+    {
+      "src": "icon/ic_restaurant_512px.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "display": "standalone",
-  "scope": "/docs",
+  "scope": "/docs/",
   "start_url": "/what-to-eat",
   "background_color": "#b8dbd9",
   "theme_color": "#b8dbd9"

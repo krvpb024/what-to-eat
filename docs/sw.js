@@ -20,8 +20,8 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox
  */
 self.__precacheManifest = [
   {
-    "url": "css/app.02be9c7e.css",
-    "revision": "17558fe5e48fce76aa1cc6dfa9568b8e"
+    "url": "css/app.b51f762c.css",
+    "revision": "208c419e9c81a7c10ca0748940dacc48"
   },
   {
     "url": "icon/ic_restaurant_48px.png",
@@ -38,6 +38,10 @@ self.__precacheManifest = [
   {
     "url": "icon/ic_restaurant_48px@4x.png",
     "revision": "a73343f915a9fd5842fe401f0672a94f"
+  },
+  {
+    "url": "icon/ic_restaurant_512px.png",
+    "revision": "a5d27a70d5b16d967c75bdf1eb1e39a9"
   },
   {
     "url": "icon/ios/ic_restaurant_48px@1.5x.png",
@@ -105,11 +109,11 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "9b2e949b08156a0efe8df4c9154e2eed"
+    "revision": "a3b7a731b05da1ed23e4eca7cb36877e"
   },
   {
-    "url": "js/app.4f4a35d3.js",
-    "revision": "563f1ae819a09a5ec5fdfbde0ba4a747"
+    "url": "js/app.fc50db6b.js",
+    "revision": "2a8741cfa3af5c9d78ab84f4eaa033d5"
   },
   {
     "url": "js/chunk-vendors.aa3ecb21.js",
@@ -117,11 +121,11 @@ self.__precacheManifest = [
   },
   {
     "url": "manifest.json",
-    "revision": "7a3eccb39a5591ddbd6618d062b8b224"
+    "revision": "255e4786788cf15ee75669da96743731"
   },
   {
     "url": "serviceworker.js",
-    "revision": "9e7c4971d66eb2dd3659fe62b444bfb0"
+    "revision": "eec98f5d3efc66d21420fd15beda2a6f"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();

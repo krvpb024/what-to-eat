@@ -3,8 +3,7 @@ if ('serviceWorker' in navigator) {
   // site using the default scope.
   navigator.serviceWorker.register('sw.js')
     .then(function (registration) {
-      console.log('Service worker registration succeeded:', registration)
-    }, /* catch */ function (error) {
+    }, function (error) {
       console.log('Service worker registration failed:', error)
     })
 } else {
