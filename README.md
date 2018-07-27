@@ -4,7 +4,7 @@
 ## 功能介紹
 分為三個層級：群組、類別、選擇。比如說現在在公司（群組），要決定午餐（類別）吃什麼，有OO便當、XX水餃、OX牛肉麵（選擇）。
 
-![demo](https://github.com/krvpb024/what-to-eat/blob/master/demo.gif)
+<img src="https://github.com/krvpb024/what-to-eat/blob/master/demo.gif" width="300">
 
 ## Baseline Progressive Web App Checklist
 - [x] Site is served over HTTPS
