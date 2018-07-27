@@ -26,7 +26,7 @@
             <p>你也可以把這個網頁加入手機的主畫面，之後不用再開啟瀏覽器輸入網址就可以直接使用。</p>
             <p><a target="_blank" rel="noopener" href="/what-to-eat/video/ios_demo.mp4">iOS Safari 教學</a></p>
             <p><a target="_blank" rel="noopener" href="/what-to-eat/video/chrome_demo.mp4">Android Chrome 教學</a></p>
-            <p><a target="_blank" rel="noopener" href="/what-to-eat/video/firefox_demo.mp4">Firefox Chrome 教學</a></p>
+            <p><a target="_blank" rel="noopener" href="/what-to-eat/video/firefox_demo.mp4">Android Firefox 教學</a></p>
           </article>
           <article>
             <h2>作者</h2>

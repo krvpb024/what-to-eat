@@ -2,8 +2,8 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0-beta.1/workbox-sw.js')
 workbox.precaching.precacheAndRoute([
   {
-    "url": "css/app.c48ea420.css",
-    "revision": "7aee8517082bc8de6bd762171f65d873"
+    "url": "css/app.cc185fa5.css",
+    "revision": "75ffce62da044877cb78bccd85aa1501"
   },
   {
     "url": "icon/ic_restaurant_48px.png",
@@ -99,11 +99,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "d444f48e101b289d2b6e52a91f3e5dca"
+    "revision": "72ad76736d936b3bc2ffb1229d1a3e22"
   },
   {
-    "url": "js/app.db329c39.js",
-    "revision": "b5fa43625a3de4779a0cef23a90420ba"
+    "url": "js/app.29d71a8f.js",
+    "revision": "ee8c882825a25b5edd2bfbd0b15868ff"
   },
   {
     "url": "js/chunk-vendors.82373c2c.js",
