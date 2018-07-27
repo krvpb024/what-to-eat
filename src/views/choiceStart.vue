@@ -1,5 +1,5 @@
 <template>
-  <section class="home-section">
+  <section class="home-section lock-scroll">
     <section-header>
       <template slot="left">
         <a @click="$router.go(-1)">
@@ -41,6 +41,9 @@ export default {
 </script>
 
 <style>
+.lock-scroll {
+  position: fixed;
+}
 .choice-title {
   text-align: center;
 }
