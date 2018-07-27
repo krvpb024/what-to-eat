@@ -12,6 +12,6 @@
   margin-top: 12vh;
   padding: 0;
   padding-top: 5%;
-  margin-bottom: 10vh;
+  margin-bottom: 15vh;
 }
 </style>
