@@ -24,7 +24,7 @@
               <strong>吃什麼</strong>支援離線使用，資料只會儲存在你的瀏覽器裡面。
             </p>
             <p>你也可以把這個網頁加入手機的主畫面，之後不用再開啟瀏覽器輸入網址就可以直接使用。</p>
-            <p><a href="/what-to-eat/video/ios_demo.mov">iOS Safari 教學</a></p>
+            <p><a href="/what-to-eat/video/ios_demo.mp4">iOS Safari 教學</a></p>
             <p><a href="/what-to-eat/video/chrome_demo.mp4">Android Chrome 教學</a></p>
             <p><a href="/what-to-eat/video/firefox_demo.mp4">Firefox Chrome 教學</a></p>
           </article>
