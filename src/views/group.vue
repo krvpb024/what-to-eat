@@ -2,6 +2,11 @@
   <section class="home-section">
     <section-header>
       {{title}}
+      <template slot="right">
+        <button @click="showInfo = true">
+          <img src="../assets/image/info.svg" alt="關於">
+        </button>
+      </template>
     </section-header>
     <section-content>
       <ul v-if="groups.length > 0">
@@ -24,6 +29,7 @@
     >
       <router-view></router-view>
     </transition>
+    <info v-if="showInfo" @closeInfo="showInfo = false"></info>
   </section>
 </template>
 
@@ -31,6 +37,7 @@
 // @ is an alias to /src
 import sectionHeader from '@/components/sectionHeader.vue'
 import sectionContent from '@/components/sectionContent.vue'
+import info from '@/components/info.vue'
 import actionBtn from '@/components/actionBtn.vue'
 import groupItem from '@/components/group/groupItem.vue'
 
@@ -40,6 +47,11 @@ export default {
   name: 'group',
   props: {
     title: String
+  },
+  data () {
+    return {
+      showInfo: false
+    }
   },
   computed: {
     ...mapState([
@@ -53,7 +65,8 @@ export default {
     sectionHeader,
     sectionContent,
     groupItem,
-    actionBtn
+    actionBtn,
+    info
   }
 }
 </script>

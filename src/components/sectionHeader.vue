@@ -32,6 +32,7 @@
   padding-bottom: 3%;
   & h1 {
     color: #586f7c;
+    font-size: 1.6rem;
     font-weight: normal;
     margin: 0;
   }
@@ -50,8 +51,11 @@
   &.right {
     margin-right: 4%;
   }
-  & a {
+  & a, & button {
+    background-color: transparent;
+    border: none;
     height: 100%;
+    padding: 0;
     width: 100%;
     & img {
       height: 100%;

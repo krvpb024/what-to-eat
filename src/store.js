@@ -18,14 +18,67 @@ export default new Vuex.Store({
     getInitialData (state) {
       if (!localStorage.getItem('groups')) {
         const groupArray = []
+        groupArray.push({pk: 'a2c596b0-9166-11e8-8023-65aca2634d53', title: '公司（範例）', order: 1})
         localStorage.setItem('groups', JSON.stringify(groupArray))
       }
       if (!localStorage.getItem('places')) {
         const placeArray = []
+        placeArray.push(
+          {
+            pk: 'a5490d40-9166-11e8-8023-65aca2634d53',
+            group: 'a2c596b0-9166-11e8-8023-65aca2634d53',
+            order: 1,
+            title: '🍴晚餐'
+          },
+          {
+            pk: '680335e0-9167-11e8-9bf0-19044503d060',
+            group: 'a2c596b0-9166-11e8-8023-65aca2634d53',
+            order: 2,
+            title: '🥤飲料'
+          }
+        )
         localStorage.setItem('places', JSON.stringify(placeArray))
       }
       if (!localStorage.getItem('choices')) {
         const choiceArray = []
+        choiceArray.push(
+          {
+            order: 1,
+            pk: 'a74d1aa0-9166-11e8-8023-65aca2634d53',
+            place: 'a5490d40-9166-11e8-8023-65aca2634d53',
+            title: '🍜拉麵'
+          },
+          {
+            order: 2,
+            pk: 'aabfd330-9166-11e8-8023-65aca2634d53',
+            place: 'a5490d40-9166-11e8-8023-65aca2634d53',
+            title: '🍱便當'
+          },
+          {
+            order: 3,
+            pk: 'a16e9cc0-9167-11e8-9348-c3445e362814',
+            place: 'a5490d40-9166-11e8-8023-65aca2634d53',
+            title: '🍔漢堡'
+          },
+          {
+            order: 4,
+            pk: 'ace79fc0-9167-11e8-9348-c3445e362814',
+            place: '680335e0-9167-11e8-9bf0-19044503d060',
+            title: '二芳'
+          },
+          {
+            order: 5,
+            pk: 'bca50330-9167-11e8-9348-c3445e362814',
+            place: '680335e0-9167-11e8-9bf0-19044503d060',
+            title: '茶水會'
+          },
+          {
+            order: 6,
+            pk: 'dec4d260-9167-11e8-9348-c3445e362814',
+            place: '680335e0-9167-11e8-9bf0-19044503d060',
+            title: '珍煮母'
+          }
+        )
         localStorage.setItem('choices', JSON.stringify(choiceArray))
       }
       state.groups = JSON.parse(localStorage.getItem('groups'))
