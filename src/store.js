@@ -9,7 +9,8 @@ export default new Vuex.Store({
     groups: [],
     places: [],
     choices: [],
-    checkedArray: []
+    checkedArray: [],
+    haveSeenInfo: false
   },
   getters: {
     checkedLength: state => state.checkedArray.length
@@ -81,9 +82,18 @@ export default new Vuex.Store({
         )
         localStorage.setItem('choices', JSON.stringify(choiceArray))
       }
+      if (!localStorage.getItem('haveSeenInfo')) {
+        const haveSeenInfo = false
+        localStorage.setItem('haveSeenInfo', JSON.stringify(haveSeenInfo))
+      }
       state.groups = JSON.parse(localStorage.getItem('groups'))
       state.places = JSON.parse(localStorage.getItem('places'))
       state.choices = JSON.parse(localStorage.getItem('choices'))
+      state.haveSeenInfo = JSON.parse(localStorage.getItem('haveSeenInfo'))
+    },
+    clickedInfo (state) {
+      state.haveSeenInfo = true
+      localStorage.setItem('haveSeenInfo', JSON.stringify(state.haveSeenInfo))
     },
     checkChoice (state, payload) {
       if (state.checkedArray.indexOf(payload.title) === -1) {

@@ -3,9 +3,15 @@
     <section-header>
       {{title}}
       <template slot="right">
-        <button @click="showInfo = true">
-          <img src="../assets/image/info.svg" alt="關於">
-        </button>
+        <transition
+          appear
+          :enter-active-class="`${haveSeenInfo ? '' : 'animated bounce'}`"
+          :leave-active-class="`${haveSeenInfo ? '' : 'animated bounce'}`"
+        >
+          <button @click="showInfoFunc" class="infoBtn">
+            <img src="../assets/image/info.svg" alt="關於">
+          </button>
+        </transition>
       </template>
     </section-header>
     <section-content>
@@ -55,8 +61,17 @@ export default {
   },
   computed: {
     ...mapState([
-      'groups'
+      'groups',
+      'haveSeenInfo'
     ])
+  },
+  methods: {
+    showInfoFunc () {
+      this.showInfo = true
+      if (!this.haveSeenInfo) {
+        this.$store.commit('clickedInfo')
+      }
+    }
   },
   created () {
     this.$store.commit('clearCheckArray')
@@ -84,5 +99,9 @@ ul {
   font-weight: normal;
   font-size: 1.2rem;
   text-align: center;
+}
+.infoBtn {
+  animation-duration: 0.5s;
+  animation-delay: 0.5s;
 }
 </style>
