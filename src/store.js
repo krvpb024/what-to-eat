@@ -168,6 +168,7 @@ export default new Vuex.Store({
     deleteChoice (state, payload) {
       const deletedArray = state.choices.filter(choice => choice.pk !== payload.pk)
       state.choices = deletedArray
+      state.checkedArray = state.checkedArray.filter(item => item !== payload.title)
       localStorage.setItem('choices', JSON.stringify(state.choices))
     },
     editPlace (state, payload) {

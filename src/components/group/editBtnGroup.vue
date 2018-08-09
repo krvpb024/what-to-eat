@@ -95,7 +95,7 @@ export default {
         }
         case 'delete': {
           if (deleteAction === 'confirm') {
-            this.$store.commit(`delete${this.model}`, { pk: this.pk })
+            this.$store.commit(`delete${this.model}`, { pk: this.pk, title: this.editPlaceTitleData })
           }
           this.currentMode = 'edit'
           break
